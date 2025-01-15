@@ -1,3 +1,3 @@
-React SVG Sprites
+# React SVG Sprites
 
-Lite, Simple, Useful.
+- Lite, Simple, Useful.
