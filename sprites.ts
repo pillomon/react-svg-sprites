@@ -149,7 +149,7 @@ const generateSpriteAndTypeDeclarations = async (filePaths: string[]) => {
 };
 
 const cwd = process.cwd();
-const inputDir = path.join(cwd, "public", "icons");
+const inputDir = path.join(cwd, "public", 'svg');
 const inputDirRelative = path.relative(cwd, inputDir);
 const typeDir = path.join(cwd, "src", "types");
 const outputDir = path.join(cwd, "public");

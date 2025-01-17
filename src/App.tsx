@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Icon from "@/components/icon/index.tsx";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {useState} from "react";
+import {IconName} from "@/types/icon";
+
+type Colors = "black" | "white" | "gray" | "red" | "green" | "blue" | undefined
+
+export const iconNames: Record<string, IconName>[] = [
+  {key: "hand-index", label: "hand-index"},
+  {key: "hand-index-fill", label: "hand-index-fill"},
+  {key: "hand-index-thumb", label: "hand-index-thumb"},
+  {key: "hand-index-thumb-fill", label: "hand-index-thumb-fill"},
+  {key: "hand-thumbs-down", label: "hand-thumbs-down"},
+  {key: "hand-thumbs-down-fill", label: "hand-thumbs-down-fill"},
+  {key: "hand-thumbs-up", label: "hand-thumbs-up"},
+  {key: "hand-thumbs-up-fill", label: "hand-thumbs-up-fill"},
+];
+export const colors: Record<string, Colors>[] = [
+  {key: "black", label: "black"},
+  {key: "white", label: "white"},
+  {key: "gray", label: "gray"},
+  {key: "red", label: "red"},
+  {key: "green", label: "green"},
+  {key: "blue", label: "blue"},
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [iconName, setIconName] = useState<IconName>(iconNames[0].label);
+  const [color, setColor] = useState<Colors>(colors[0].label);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  return <div className="mx-auto gap-12 w-full max-w-[768px] flex flex-col items-center justify-center">
+    <Select onValueChange={(value) => setIconName(value as IconName)}>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Icon name" />
+      </SelectTrigger>
+      <SelectContent>
+        {iconNames.map(iconName => <SelectItem value={iconName.key}>{iconName.label}</SelectItem>)}
+      </SelectContent>
+    </Select>
+    <Select onValueChange={(value) => setColor(value as Colors)}>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Color" />
+      </SelectTrigger>
+      <SelectContent>
+        {colors.map(iconName => <SelectItem value={iconName.key}>{iconName.label}</SelectItem>)}
+      </SelectContent>
+    </Select>
+    <div className='self-stretch flex justify-center'>
+      <Icon name={iconName} color={color} />
+    </div>
+  </div>
 }
 
 export default App
