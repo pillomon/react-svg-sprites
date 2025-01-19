@@ -11,7 +11,7 @@ export const iconStyles = cva(["transition-all", "stroke-[0px]"], {
       black: "text-black",
       white: "text-white",
       gray: "text-gray-500",
-      red: "text`-red-500",
+      red: "text-red-500",
       green: "text-green-500",
       blue: "text-blue-500",
     },
